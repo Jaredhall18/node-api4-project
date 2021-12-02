@@ -7,14 +7,27 @@ server.use(express.json())
 
 const PORT = process.env.PORT || 8000
 
+const testData = [
+    {username: 'test1', password:"testpass"},
+    {username: 'test2', password:"testpass"},
+    {username: 'test3', password:"testpass"},
+]
+
 server.get('/api/users', (req, res) => {
-    res.json([
-        {id: 1, username: 'test1'},
-        {id: 2, username: 'test2'},
-        {id: 3, username: 'test3'},
-    ])
+    res.json(testData)
 })
 
+server.post('/api/register', (req, res) => {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        res.status(500).json({
+            message: "the information sent is incorrect"
+        })
+    } else {
+        res.status(210).json(req.body)
+    }
+})
 
 
 
