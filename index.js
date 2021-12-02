@@ -29,6 +29,18 @@ server.post('/api/register', (req, res) => {
     }
 })
 
+server.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        res.status(500).json({
+            message: "the information sent is incorrect"
+        })
+    } else {
+        res.status(210).json("Welcome Gamers")
+    }
+})
+
 
 
 server.listen(PORT, () => {
